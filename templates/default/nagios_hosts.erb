@@ -1,0 +1,16 @@
+<% @hosts.each do |m| -%> 
+define host{
+        name                            <%= m %>
+        host_name			<%= m %>
+        use                             generic-host
+        check_period                    24x7
+        check_interval                  5
+        retry_interval                  1
+        max_check_attempts              10
+        check_command                   check-host-alive
+        notification_interval           10
+        notification_options            d,u,r
+        contact_groups                  admins
+        register                        1
+}
+<% end -%>
